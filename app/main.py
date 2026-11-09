@@ -11,7 +11,7 @@ app = FastAPI(title="TaskFlow API")
 
 @app.get("/health")
 def health() -> dict[str, str]:
-    return {"status": "ok"}
+    return {"status": "broken"}
 
 
 @app.get("/health/ready")
@@ -22,4 +22,4 @@ def readiness(response: Response, engine: Annotated[Engine, Depends(get_engine)]
     except SQLAlchemyError:
         response.status_code = status.HTTP_503_SERVICE_UNAVAILABLE
         return {"status": "unavailable"}
-    return {"status": "ok"}
+    return {"status": "broken"}
